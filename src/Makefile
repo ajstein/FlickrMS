@@ -6,6 +6,7 @@ FUSEINC:=`pkg-config --cflags --libs fuse`
 GLIBINC:=`pkg-config --cflags --libs glib-2.0`
 FLKCINC:=`pkg-config --cflags --libs flickcurl`
 CURLINC:=`pkg-config --cflags --libs libcurl`
+LXMLINC:=`pkg-config --cflags --libs libxml-2.0`
 INCLUDES:=$(FUSEINC) $(GLIBINC) $(FLKCINC) $(CURLINC)
 
 OPTS:=-march=native -O2 -pipe
@@ -24,7 +25,7 @@ flickrms.o: flickrms.c cache.c wget.c
 	$(CC) $(CFLAGS) $(FUSEINC) -c $<
 
 cache.o: cache.c conf.c
-	$(CC) $(CFLAGS) $(GLIBINC) $(FLKCINC) -c $<
+	$(CC) $(CFLAGS) $(GLIBINC) $(FLKCINC) $(LXMLINC) -c $<
 
 wget.o: wget.c
 	$(CC) $(CFLAGS) $(CURLINC) -c $<
